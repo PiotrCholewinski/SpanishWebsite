@@ -1,0 +1,116 @@
+<h4>User Module</h4>
+
+
+<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addUserModal">Add User</button>
+
+<div style="margin-top: 30px;">
+    <table class="table">
+        <thead>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Password</th>
+            <th></th>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let user of userList">
+                <td>{{user.Name}}</td>
+                <td>{{user.Email}}</td>
+                <td>{{user.Age}}</td>
+                <td>{{user.Gender}}</td>
+                <td>{{user.Password}}</td>
+                <td>
+                    <span (click)="deleteUser(user.ID)" class="glyphicon glyphicon-trash"></span>&nbsp;
+                    <span (click)="editUserModal(user.ID)" class="glyphicon glyphicon-edit" data-toggle="modal"
+                        data-target="#editUserModal"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="addUserModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add User</h4>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <tr>
+                        <td><input [(ngModel)]="userObj.Name" class="form-control" type="text"
+                                placeholder="Enter Name" /></td>
+                    </tr><br />
+                    <tr>
+                        <td><input [(ngModel)]="userObj.Email" class="form-control" type="text"
+                                placeholder="Enter Email" /></td>
+                    </tr><br />
+                    <tr>
+                        <td><input [(ngModel)]="userObj.Age" class="form-control" type="text" placeholder="Enter Age" />
+                        </td>
+                    </tr><br />
+                    <tr>
+                        <td><input [(ngModel)]="userObj.Gender" class="form-control" type="text"
+                                placeholder="Enter Gender" /></td>
+                    </tr><br />
+                    <tr>
+                        <td><input [(ngModel)]="userObj.Password" class="form-control" type="text"
+                                placeholder="Enter Password" /></td>
+                    </tr><br />
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="addUser()">Submit</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="editUserModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit User</h4>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="editUserForm">
+                    <table>
+                        <tr>
+                            <td><input class="form-control" type="text" [formControl]="editUserForm.controls['Name']"
+                                    placeholder="Enter Name" /></td>
+                        </tr><br />
+                        <tr>
+                            <td><input class="form-control" type="text" [formControl]="editUserForm.controls['Email']"
+                                    placeholder="Enter Email" /></td>
+                        </tr><br />
+                        <tr>
+                            <td><input class="form-control" type="text" [formControl]="editUserForm.controls['Age']"
+                                    placeholder="Enter Age" /></td>
+                        </tr><br />
+                        <tr>
+                            <td><input class="form-control" type="text" [formControl]="editUserForm.controls['Gender']"
+                                    placeholder="Enter Gender" /></td>
+                        </tr><br />
+                        <tr>
+                            <td><input class="form-control" type="text" [formControl]="editUserForm.controls['Password']"
+                                    placeholder="Enter Password" /></td>
+                        </tr><br />
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="editUser()">Submit</button>
+            </div>
+        </div>
+
+    </div>
+</div>

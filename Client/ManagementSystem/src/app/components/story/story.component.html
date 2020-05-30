@@ -1,0 +1,69 @@
+<h4>Comment Module</h4>
+
+<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#addStoryModal">Add Comment</button>
+
+<div id="addStoryModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Comment</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input [formControl]="addStoryForm.controls['StoryTitle']" type="text" class="form-control" 
+                    placeholder="Story Title" maxlength="100" required />
+                    <br />
+                    <textarea [formControl]="addStoryForm.controls['StoryContent']" class="form-control" rows="20" 
+                    placeholder="Story Content" maxlength="5000" required></textarea>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="addStory()">Submit</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <h4>Comments</h4>
+    <div class="panel panel-default" *ngFor="let story of listOfStories">
+      <div class="panel-heading">{{story.StoryTitle}}
+        <div style="float: right;">
+            <span (click)="deleteStory(story.ID)" class="glyphicon glyphicon-trash"></span>&nbsp;
+            <span (click)="populateEditStory(story.ID)" class="glyphicon glyphicon-edit" data-toggle="modal"
+            data-target="#editStoryModal"></span>&nbsp;
+        </div>
+      </div>
+      <div class="panel-body">{{story.StoryContent}}</div>
+    </div>
+  </div>
+
+  <div id="editStoryModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Comment</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input [formControl]="editStoryForm.controls['StoryTitle']" type="text" class="form-control" 
+                    placeholder="Story Title" maxlength="100" />
+                    <br />
+                    <textarea [formControl]="editStoryForm.controls['StoryContent']" class="form-control" rows="20" 
+                    placeholder="Story Content" maxlength="5000"></textarea>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="editStory()">Submit</button>
+            </div>
+        </div>
+
+    </div>
+</div>
